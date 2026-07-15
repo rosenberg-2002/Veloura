@@ -1,0 +1,450 @@
+.searchPage {
+  padding-bottom: 150px;
+}
+
+.emptyPage {
+  padding-top: 150px;
+}
+
+.intro {
+  max-width: 650px;
+  margin: 32px auto 0;
+  color: var(--paper-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.hero {
+  margin-bottom: 0;
+}
+
+.searchForm {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(150px, .28fr) auto;
+  max-width: 980px;
+  align-items: end;
+  margin-top: 48px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  background: rgba(17, 17, 18, .9);
+  gap: 18px;
+}
+
+.emptyPage .searchForm {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+}
+
+.queryField,
+.typeField {
+  display: grid;
+  gap: 10px;
+}
+
+.queryField > span,
+.typeField > span {
+  color: #77726b;
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.queryField input,
+.typeField select {
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-bottom: 1px solid #45413d;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--paper);
+}
+
+.queryField input {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 28px);
+}
+
+.queryField input::placeholder {
+  color: #5f5a54;
+}
+
+.typeField select {
+  color-scheme: dark;
+  font-size: 12px;
+}
+
+.queryField input:focus,
+.typeField select:focus {
+  border-color: var(--accent-bright);
+}
+
+.searchForm button {
+  height: 48px;
+}
+
+.categoryMenu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 980px;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.emptyPage .categoryMenu {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+}
+
+.categoryMenu a {
+  display: grid;
+  min-width: 0;
+  padding: 17px 18px;
+  border-right: 1px solid var(--line);
+  gap: 5px;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.categoryMenu a:last-child {
+  border-right: 0;
+}
+
+.categoryMenu a:hover,
+.categoryMenu .activeCategory {
+  background: rgba(255, 255, 255, .055);
+}
+
+.categoryMenu .activeCategory {
+  box-shadow: inset 0 -2px var(--accent-bright);
+}
+
+.categoryMenu strong {
+  color: #d5d0c7;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.categoryMenu span {
+  overflow: hidden;
+  color: #6f6a63;
+  font-size: 8px;
+  letter-spacing: .05em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.results {
+  display: grid;
+  gap: 108px;
+  padding-top: 90px;
+}
+
+.resultSection {
+  min-width: 0;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 38px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  gap: 24px;
+}
+
+.sectionHeading p {
+  margin: 0 0 9px;
+  color: var(--accent-bright);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+
+.sectionHeading > span {
+  color: #77726b;
+  font-size: 9px;
+  font-weight: 720;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.peopleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.personCard {
+  display: grid;
+  grid-template-columns: minmax(220px, .82fr) 1.18fr;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: #101011;
+}
+
+.personIdentity {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.personPhoto {
+  display: grid;
+  aspect-ratio: .78;
+  overflow: hidden;
+  background: linear-gradient(145deg, #282427, #121214);
+  place-items: center;
+}
+
+.personPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.82);
+  transition: filter 180ms ease, transform 300ms ease;
+}
+
+.personCard:hover .personPhoto img {
+  filter: saturate(1.08);
+  transform: scale(1.035);
+}
+
+.personPhoto > span {
+  color: #6c6660;
+  font-family: var(--font-display);
+  font-size: 48px;
+}
+
+.personIdentity p,
+.knownFor > p,
+.companyCard p {
+  margin: 0 0 8px;
+  color: #736e67;
+  font-size: 8px;
+  font-weight: 740;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.personIdentity h3,
+.companyCard h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.personIdentity > div:last-child > span {
+  display: block;
+  margin-top: 18px;
+  color: var(--accent-bright);
+  font-size: 8px;
+  font-weight: 720;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.knownFor {
+  min-width: 0;
+  padding: 25px 22px;
+  border-left: 1px solid var(--line);
+}
+
+.knownFor > div {
+  display: grid;
+}
+
+.knownFor a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  gap: 12px;
+}
+
+.knownFor strong {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.knownFor span {
+  color: #6f6a64;
+  font-size: 9px;
+}
+
+.companyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.companyCard {
+  position: relative;
+  display: grid;
+  min-height: 250px;
+  align-content: space-between;
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: #101011;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.companyCard:hover {
+  border-color: rgba(255, 255, 255, .34);
+  transform: translateY(-3px);
+}
+
+.companyLogo {
+  display: grid;
+  min-height: 100px;
+  align-items: center;
+}
+
+.companyLogo img {
+  max-width: 170px;
+  max-height: 74px;
+  filter: grayscale(1) brightness(4);
+  object-fit: contain;
+}
+
+.companyLogo span {
+  color: #5f5a54;
+  font-family: var(--font-display);
+  font-size: 70px;
+}
+
+.companyCard > div:nth-child(2) > span {
+  display: block;
+  margin-top: 10px;
+  color: #736e67;
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.companyCard > i {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: var(--accent-bright);
+  font-size: 18px;
+  font-style: normal;
+}
+
+@media (max-width: 1100px) {
+  .personCard {
+    grid-template-columns: 1fr;
+  }
+
+  .knownFor {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .companyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .searchForm {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryMenu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categoryMenu a:nth-child(2) {
+    border-right: 0;
+  }
+
+  .peopleGrid,
+  .companyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .searchForm {
+    padding: 18px;
+  }
+
+  .categoryMenu {
+    grid-template-columns: 1fr;
+  }
+
+  .categoryMenu a {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .personIdentity {
+    grid-template-columns: 92px minmax(0, 1fr);
+  }
+
+  .sectionHeading {
+    align-items: start;
+  }
+}
+
+:global(:root[data-theme="light"]) .searchForm,
+:global(:root[data-theme="light"]) .personCard,
+:global(:root[data-theme="light"]) .companyCard {
+  background: rgba(255, 255, 255, .58);
+}
+
+:global(:root[data-theme="light"]) .queryField > span,
+:global(:root[data-theme="light"]) .typeField > span,
+:global(:root[data-theme="light"]) .sectionHeading > span,
+:global(:root[data-theme="light"]) .personIdentity p,
+:global(:root[data-theme="light"]) .knownFor > p,
+:global(:root[data-theme="light"]) .companyCard p,
+:global(:root[data-theme="light"]) .companyCard > div:nth-child(2) > span {
+  color: #777067;
+}
+
+:global(:root[data-theme="light"]) .categoryMenu strong {
+  color: var(--paper);
+}
+
+:global(:root[data-theme="light"]) .categoryMenu a:hover,
+:global(:root[data-theme="light"]) .categoryMenu .activeCategory {
+  background: rgba(39, 34, 29, .05);
+}
+
+:global(:root[data-theme="light"]) .typeField select {
+  color-scheme: light;
+}
+
+:global(:root[data-theme="light"]) .knownFor a {
+  border-bottom-color: rgba(39, 34, 29, .09);
+}
+
+:global(:root[data-theme="light"]) .companyLogo img {
+  filter: grayscale(1) contrast(1.1);
+}
