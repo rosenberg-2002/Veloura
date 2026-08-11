@@ -77,7 +77,7 @@ function PeopleLine({ label, people }: { label: string; people: CrewMember[] }) 
       <span>{label}</span>
       <p>{people.map((person, index) => (
         <span key={`${person.id}-${person.job}`}>
-          <a href={`https://www.themoviedb.org/person/${person.id}`} target="_blank" rel="noreferrer">{person.name}</a>
+          <a href={`/person/${person.id}`}>{person.name}</a>
           {index < people.length - 1 ? ", " : ""}
         </span>
       ))}</p>
@@ -263,7 +263,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
             {cast.slice(0, 12).map((person, index) => {
               const portrait = imageUrl(person.profile_path, "w342");
               return (
-                <a className="full-cast-card" href={`https://www.themoviedb.org/person/${person.id}`} target="_blank" rel="noreferrer" key={`${person.credit_id ?? person.id}-${index}`}>
+                <a className="full-cast-card" href={`/person/${person.id}`} key={`${person.credit_id ?? person.id}-${index}`}>
                   <div>{portrait ? <img src={portrait} alt="" loading="lazy" /> : <span aria-hidden="true">{person.name.slice(0, 1)}</span>}</div>
                   <h3>{person.name}</h3>
                   <p>{person.character || "Unspecified role"}</p>
@@ -276,7 +276,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
               <summary>View all {cast.length} cast credits <span>+</span></summary>
               <div className="credit-list">
                 {cast.slice(12).map((person, index) => (
-                  <a href={`https://www.themoviedb.org/person/${person.id}`} target="_blank" rel="noreferrer" key={`${person.credit_id ?? person.id}-all-${index}`}>
+                  <a href={`/person/${person.id}`} key={`${person.credit_id ?? person.id}-all-${index}`}>
                     <strong>{person.name}</strong><span>{person.character || "Unspecified role"}</span>
                   </a>
                 ))}
@@ -298,7 +298,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
                 <summary><span>{department}</span><small>{people.length} credits</small><i>+</i></summary>
                 <div>
                   {people.map((person, personIndex) => (
-                    <a href={`https://www.themoviedb.org/person/${person.id}`} target="_blank" rel="noreferrer" key={`${person.credit_id ?? person.id}-${person.job}-${personIndex}`}>
+                    <a href={`/person/${person.id}`} key={`${person.credit_id ?? person.id}-${person.job}-${personIndex}`}>
                       <strong>{person.name}</strong><span>{person.job}</span>
                     </a>
                   ))}

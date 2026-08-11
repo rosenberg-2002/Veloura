@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthControls } from "@/components/auth/AuthControls";
 import { SearchAutocomplete } from "@/components/SearchAutocomplete";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import styles from "./Header.module.css";
@@ -26,6 +27,7 @@ export function Header() {
         <div className={`header-tools ${styles.tools}`}>
           <SearchAutocomplete />
           <ThemeToggle />
+          <AuthControls />
         </div>
 
         <details className={`mobile-menu ${styles.mobileMenu}`}>

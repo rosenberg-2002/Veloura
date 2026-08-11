@@ -209,3 +209,59 @@ export type MoviePageResponse = {
 export type GenreResponse = {
   genres: Genre[];
 };
+
+export type PersonMovieCastCredit = MovieSummary & {
+  character: string;
+  credit_id: string;
+  order?: number;
+};
+
+export type PersonMovieCrewCredit = MovieSummary & {
+  credit_id: string;
+  department: string;
+  job: string;
+};
+
+export type PersonImage = {
+  aspect_ratio: number;
+  file_path: string;
+  height: number;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+};
+
+export type PersonDetails = {
+  id: number;
+  name: string;
+  also_known_as: string[];
+  biography: string;
+  birthday: string | null;
+  deathday: string | null;
+  gender: number;
+  homepage: string | null;
+  imdb_id: string | null;
+  known_for_department: string;
+  place_of_birth: string | null;
+  popularity: number;
+  profile_path: string | null;
+  movie_credits?: {
+    cast: PersonMovieCastCredit[];
+    crew: PersonMovieCrewCredit[];
+  };
+  external_ids?: {
+    facebook_id: string | null;
+    freebase_id?: string | null;
+    freebase_mid?: string | null;
+    imdb_id: string | null;
+    instagram_id: string | null;
+    tiktok_id?: string | null;
+    tvrage_id?: number | null;
+    twitter_id: string | null;
+    wikidata_id: string | null;
+    youtube_id?: string | null;
+  };
+  images?: {
+    profiles: PersonImage[];
+  };
+};

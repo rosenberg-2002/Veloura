@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { StatusPanel } from "@/components/StatusPanel";
+import { PeopleSearchField } from "@/components/PeopleSearchField";
 import { firstSearchParam, type SearchParam } from "@/lib/search-params";
 import { imageUrl, movieYear, tmdbFetch } from "@/lib/tmdb";
 import type { MovieSummary } from "@/lib/types";
@@ -27,7 +27,7 @@ type PopularPeopleResponse = {
 };
 
 type PeoplePageProps = {
-  searchParams: Promise<{ role?: SearchParam; sort?: SearchParam }>;
+  searchParams: Promise<{ q?: SearchParam; role?: SearchParam; sort?: SearchParam }>;
 };
 
 const roles = [
@@ -52,24 +52,45 @@ function personMovies(person: PopularPerson) {
 
 export default async function PeoplePage({ searchParams }: PeoplePageProps) {
   const query = await searchParams;
+  const searchTerm = firstSearchParam(query.q).trim().slice(0, 80);
   const roleValue = firstSearchParam(query.role);
   const sortValue = firstSearchParam(query.sort);
   const role = roles.some((item) => item.value === roleValue) ? roleValue : "all";
   const sort = sorts.some((item) => item.value === sortValue) ? sortValue : "popularity";
 
-  let responses: PopularPeopleResponse[];
+  let responses: PopularPeopleResponse[] = [];
+  let hasLoadError = false;
 
   try {
-    responses = await Promise.all(
-      [1, 2, 3].map((page) => tmdbFetch<PopularPeopleResponse>("/person/popular", { page })),
-    );
+    if (searchTerm.length >= 2) {
+      responses = [
+        await tmdbFetch<PopularPeopleResponse>("/search/person", {
+          query: searchTerm,
+          page: 1,
+          include_adult: false,
+        }),
+      ];
+    } else {
+      const popularResults = await Promise.allSettled(
+        [1, 2, 3].map((page) => tmdbFetch<PopularPeopleResponse>("/person/popular", { page })),
+      );
+      responses = popularResults
+        .filter((result): result is PromiseFulfilledResult<PopularPeopleResponse> => result.status === "fulfilled")
+        .map((result) => result.value);
+
+      if (!responses.length) throw new Error("TMDB popular people requests failed");
+    }
   } catch {
-    return <main className="page-shell"><StatusPanel title="The spotlight is resetting" message="We couldn’t load performers from TMDB. Please refresh and try again." /></main>;
+    hasLoadError = true;
   }
 
-  let people = responses
-    .flatMap((response) => response.results)
-    .filter((person) => person.known_for_department === "Acting" && personMovies(person).length > 0);
+  let people = Array.from(
+    new Map(responses.flatMap((response) => response.results).map((person) => [person.id, person])).values(),
+  ).filter((person) => person.known_for_department === "Acting" && personMovies(person).length > 0);
+
+  if (searchTerm.length === 1) {
+    people = people.filter((person) => person.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
+  }
 
   if (role === "actresses") people = people.filter((person) => person.gender === 1);
   if (role === "actors") people = people.filter((person) => person.gender === 2);
@@ -98,6 +119,7 @@ export default async function PeoplePage({ searchParams }: PeoplePageProps) {
 
         <div className={styles.shell}>
           <form action="/people" className={styles.filters}>
+            <PeopleSearchField defaultValue={searchTerm} />
             <label>
               <span>Show</span>
               <select defaultValue={role} name="role">
@@ -114,7 +136,7 @@ export default async function PeoplePage({ searchParams }: PeoplePageProps) {
           </form>
 
           <div className={styles.peopleSummary}>
-            <span>{roleLabel}</span>
+            <span>{searchTerm ? `${roleLabel} matching “${searchTerm}”` : roleLabel}</span>
             <span>{sortLabel} · {people.length} people</span>
           </div>
 
@@ -125,7 +147,7 @@ export default async function PeoplePage({ searchParams }: PeoplePageProps) {
                 const movies = personMovies(person).slice(0, 3);
                 return (
                   <article className={styles.personCard} key={person.id}>
-                    <div className={styles.personHeading}>
+                    <Link className={styles.personHeading} href={`/person/${person.id}`}>
                       <div className={styles.portrait}>
                         {portrait ? <img alt={`${person.name} portrait`} loading="lazy" src={portrait} /> : <span>{person.name.charAt(0)}</span>}
                       </div>
@@ -133,7 +155,7 @@ export default async function PeoplePage({ searchParams }: PeoplePageProps) {
                         <h2>{person.name}</h2>
                         <p>{person.known_for_department} · Popularity {Math.round(person.popularity)}</p>
                       </div>
-                    </div>
+                    </Link>
                     <div className={styles.knownFor} aria-label={`${person.name} known for`}>
                       {movies.map((movie) => {
                         const poster = imageUrl(movie.poster_path, "w342");
@@ -152,7 +174,15 @@ export default async function PeoplePage({ searchParams }: PeoplePageProps) {
                 );
               })}
             </section>
-          ) : <p className={styles.noPeople}>No performers match this selection yet.</p>}
+          ) : (
+            <p className={styles.noPeople}>
+              {hasLoadError
+                ? "TMDB is temporarily unavailable. You can adjust the search or try again shortly."
+                : searchTerm
+                  ? `No performers match “${searchTerm}”.`
+                  : "No performers match this selection yet."}
+            </p>
+          )}
         </div>
     </main>
   );

@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  padding-bottom: 130px;
+  padding-bottom: 90px;
   background:
     radial-gradient(circle at 86% 8%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 28rem),
     var(--ink);
@@ -10,9 +10,9 @@
 .hero {
   position: relative;
   display: grid;
-  min-height: 520px;
+  min-height: 440px;
   align-items: end;
-  padding: 176px max(48px, calc((100vw - 1420px) / 2)) 88px;
+  padding: 148px max(48px, calc((100vw - 1420px) / 2)) 64px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
@@ -59,7 +59,7 @@
 
 .heroDescription {
   max-width: 620px;
-  margin: 34px 0 0;
+  margin: 24px 0 0;
   color: var(--paper-muted);
   font-size: 15px;
   line-height: 1.8;
@@ -71,7 +71,7 @@
 }
 
 .directory {
-  padding: 74px 0 42px;
+  padding: 54px 0 32px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -104,17 +104,17 @@
 .genreDirectory {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  margin-top: 48px;
+  margin-top: 34px;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
 
 .genreLink {
   display: flex;
-  min-height: 90px;
+  min-height: 76px;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 16px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   color: var(--paper-muted);
@@ -147,11 +147,139 @@
 
 .studioList {
   display: grid;
+  min-width: 0;
 }
 
 .studioSection {
-  padding: 94px 0 70px;
+  min-width: 0;
+  padding: 58px 0 46px;
   border-bottom: 1px solid var(--line);
+}
+
+.companyDirectory {
+  min-width: 0;
+  padding-top: 44px;
+}
+
+.companySearch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: var(--ink-soft);
+  gap: 18px;
+}
+
+.companySearch label {
+  display: grid;
+  gap: 10px;
+}
+
+.companySearch label span {
+  color: var(--paper-muted);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.companySearch input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  outline: none;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.companySearch input:focus {
+  border-color: var(--accent-bright);
+}
+
+.companyAlphabet {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.companyAlphabet a {
+  display: grid;
+  min-height: 42px;
+  border-left: 1px solid var(--line);
+  color: var(--paper-muted);
+  font-size: 10px;
+  place-items: center;
+}
+
+.companyAlphabet a:hover,
+.companyAlphabet a:focus-visible {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.companyHomepage {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+  color: var(--paper-muted);
+  font-size: 10px;
+  font-weight: 720;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.catalogPagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-top: 48px;
+  gap: 20px;
+}
+
+.catalogPagination > :first-child { justify-self: start; }
+.catalogPagination > :last-child { justify-self: end; }
+
+.pageNumbers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pageNumber {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--paper-muted);
+  font-size: 10px;
+  font-weight: 740;
+  place-items: center;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.pageNumber:hover,
+.pageNumber:focus-visible,
+.pageNumberActive {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.paginationEllipsis {
+  display: grid;
+  width: 24px;
+  height: 42px;
+  color: var(--paper-muted);
+  font-size: 13px;
+  place-items: center;
 }
 
 .studioIdentity {
@@ -159,13 +287,13 @@
   grid-template-columns: minmax(190px, .55fr) minmax(0, 1.7fr);
   align-items: center;
   margin-bottom: 12px;
-  gap: clamp(38px, 7vw, 110px);
+  gap: clamp(30px, 5vw, 72px);
 }
 
 .logoPanel {
   display: grid;
-  min-height: 176px;
-  padding: 34px;
+  min-height: 148px;
+  padding: 26px;
   place-items: center;
   background: #f3f0e8;
 }
@@ -196,7 +324,7 @@
 .studioMeta {
   display: flex;
   flex-wrap: wrap;
-  margin: 25px 0 0;
+  margin: 18px 0 0;
   gap: 9px;
 }
 
@@ -213,7 +341,7 @@
 
 .studioDescription {
   max-width: 680px;
-  margin: 22px 0 0;
+  margin: 16px 0 0;
   color: var(--paper-muted);
   font-size: 14px;
   line-height: 1.75;
@@ -230,10 +358,10 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr)) auto;
+  grid-template-columns: minmax(240px, 1.4fr) repeat(2, minmax(170px, 1fr)) auto;
   align-items: end;
   margin-top: -1px;
-  padding: 28px;
+  padding: 22px;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--ink-soft) 96%, transparent);
   gap: 16px;
@@ -252,7 +380,9 @@
   text-transform: uppercase;
 }
 
-.filters select {
+.filters select,
+.filters input {
+  width: 100%;
   min-height: 50px;
   padding: 0 16px;
   border: 1px solid var(--line);
@@ -262,8 +392,22 @@
   color: var(--paper);
 }
 
-.filters select:focus {
+.filters select:focus,
+.filters input:focus {
   border-color: var(--accent-bright);
+}
+
+.peopleSearchField {
+  position: relative;
+}
+
+.peopleSearchField small {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  color: var(--paper-muted);
+  font-size: 8px;
+  letter-spacing: .04em;
 }
 
 .filterButton {
@@ -291,7 +435,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 54px 0 24px;
+  padding: 38px 0 20px;
   border-bottom: 1px solid var(--line);
   color: var(--paper-muted);
   font-size: 10px;
@@ -315,7 +459,7 @@
   display: grid;
   min-width: 0;
   grid-template-rows: auto 1fr;
-  padding: 28px;
+  padding: 22px;
   background: var(--ink);
 }
 
@@ -375,7 +519,7 @@
 .knownFor {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 28px;
+  margin-top: 20px;
   gap: 9px;
 }
 
@@ -430,7 +574,7 @@
 }
 
 .noPeople {
-  padding: 80px 0;
+  padding: 56px 0;
   color: var(--paper-muted);
   text-align: center;
 }
@@ -447,8 +591,8 @@
 
 @media (max-width: 760px) {
   .hero {
-    min-height: 460px;
-    padding: 150px 28px 70px;
+    min-height: 410px;
+    padding: 132px 28px 52px;
   }
 
   .hero::before {
@@ -483,6 +627,19 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  .peopleSearchField {
+    grid-column: 1 / -1;
+  }
+
+  .peopleSearchField small {
+    position: static;
+    line-height: 1.4;
+  }
+
+  .companyAlphabet {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
   .filterButton {
     grid-column: 1 / -1;
   }
@@ -498,7 +655,7 @@
   }
 
   .directory {
-    padding-top: 58px;
+    padding-top: 42px;
   }
 
   .genreLink {
@@ -508,12 +665,50 @@
   }
 
   .studioSection {
-    padding: 72px 0 52px;
+    padding: 46px 0 34px;
   }
 
   .filters,
   .peopleGrid {
     grid-template-columns: 1fr;
+  }
+
+  .companyDirectory {
+    padding-top: 36px;
+  }
+
+  .companySearch {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .companySearch .filterButton {
+    width: 100%;
+  }
+
+  .companyAlphabet {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .peopleSummary {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .catalogPagination {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 10px;
+  }
+
+  .pageNumbers {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .pageNumber {
+    width: 38px;
+    height: 38px;
   }
 
   .personCard {

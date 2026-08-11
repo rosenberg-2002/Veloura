@@ -18,6 +18,13 @@ npm run build
 
 Live movie data requires a TMDB API key. Set `TMDB_API_KEY` in the runtime environment before starting the site; optionally set `TMDB_REGION` (for example, `US`) to choose the preferred watch-provider region. Configure both as hosting secrets in production rather than committing their values.
 
+Optional customer sign-in uses the local Veloura Keycloak realm. The browser
+client defaults to `http://localhost:8080`, realm `veloura`, and client
+`veloura-web`; override these values with the `NEXT_PUBLIC_KEYCLOAK_*` variables
+listed in `.env.example`. Movie browsing remains public when Keycloak is not
+available. Authentication is reserved for user-owned features such as the
+future favorites collection.
+
 This starter does not use `wrangler.jsonc`.
 
 ## Included Shape

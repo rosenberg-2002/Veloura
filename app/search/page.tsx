@@ -110,7 +110,7 @@ function PersonCard({ person }: { person: PersonResult }) {
 
   return (
     <article className={styles.personCard}>
-      <a className={styles.personIdentity} href={`https://www.themoviedb.org/person/${person.id}`} target="_blank" rel="noreferrer">
+      <a className={styles.personIdentity} href={`/person/${person.id}`}>
         <div className={styles.personPhoto}>
           {profile ? <img src={profile} alt={`${person.name} portrait`} loading="lazy" /> : <span>{person.name.charAt(0)}</span>}
         </div>

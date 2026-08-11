@@ -1,6 +1,6 @@
 .headerInner {
-  grid-template-columns: auto minmax(0, 1fr) minmax(300px, 390px);
-  gap: clamp(20px, 2.5vw, 44px);
+  grid-template-columns: auto minmax(330px, 1fr) minmax(460px, 520px);
+  gap: clamp(18px, 2vw, 34px);
 }
 
 .desktopNav {
@@ -17,9 +17,63 @@
   min-width: 0;
 }
 
+.authStatusShort {
+  display: none;
+}
+
+.authControls {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.authIdentity {
+  max-width: 120px;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.authButton,
+.authStatus {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: white;
+  background: rgba(7, 7, 8, 0.46);
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 40px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.authButton {
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.authButton:hover,
+.authButton:focus-visible {
+  border-color: var(--accent-bright);
+  background: rgba(7, 7, 8, 0.68);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.authStatus {
+  color: rgba(255, 255, 255, 0.62);
+}
+
 @media (max-width: 1280px) {
   .headerInner {
-    grid-template-columns: auto 1fr minmax(250px, 310px);
+    grid-template-columns: auto minmax(300px, 1fr) minmax(390px, 440px);
   }
 
   .desktopNav {
@@ -30,6 +84,23 @@
     font-size: 10px;
   }
 
+  .authIdentity {
+    display: none;
+  }
+
+  .authStatus {
+    min-width: 46px;
+    padding: 0 12px;
+    text-align: center;
+  }
+
+  .authStatusFull {
+    display: none;
+  }
+
+  .authStatusShort {
+    display: inline;
+  }
 }
 
 @media (max-width: 1020px) {
@@ -43,6 +114,10 @@
 
   .mobileMenu {
     display: block;
+  }
+
+  .tools {
+    width: min(520px, 100%);
   }
 }
 
@@ -58,5 +133,18 @@
 
   .headerInner {
     grid-template-columns: 1fr auto auto;
+  }
+
+  .authButton,
+  .authStatus {
+    min-height: 38px;
+    padding: 0 10px;
+    line-height: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .authButton {
+    transition: none;
   }
 }
