@@ -93,8 +93,9 @@ export function SearchAutocomplete() {
   }
 
   return (
-    <div className={`${styles.autocomplete} header-autocomplete`} onBlur={handleBlur}>
+    <div className={styles.autocomplete} onBlur={handleBlur}>
       <form className={styles.search} action="/search" role="search">
+        <input type="hidden" name="type" value="all" />
         <label className={styles.searchBox}>
           <span className={styles.searchGlyph} aria-hidden="true" />
           <span className={styles.srOnly}>Search Veloura</span>
@@ -114,16 +115,6 @@ export function SearchAutocomplete() {
             placeholder="Search anything"
           />
         </label>
-        <label className={styles.categoryLabel}>
-          <span className={styles.srOnly}>Search category</span>
-          <select name="type" aria-label="Search category" defaultValue="all">
-            <option value="all">All</option>
-            <option value="movies">Movies</option>
-            <option value="people">People</option>
-            <option value="productions">Productions</option>
-          </select>
-        </label>
-        <button className={styles.submit} type="submit" aria-label="Search">→</button>
       </form>
 
       {canShowPanel && (

@@ -331,7 +331,7 @@
 .studioMeta span {
   padding: 7px 10px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius);
   color: var(--paper-muted);
   font-size: 9px;
   font-weight: 720;
@@ -414,7 +414,7 @@
   min-height: 50px;
   padding: 0 25px;
   border: 1px solid var(--accent);
-  border-radius: 999px;
+  border-radius: var(--radius);
   cursor: pointer;
   background: var(--accent);
   color: #fff;

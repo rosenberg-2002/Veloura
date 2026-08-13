@@ -21,10 +21,15 @@ test.describe("Veloura catalog", () => {
     const headerSearch = page.getByPlaceholder("Search anything");
     if (testInfo.project.name === "mobile-chromium") {
       await expect(headerSearch).toBeHidden();
+      await expect(page.getByRole("link", { name: "Search", exact: true }).first()).toBeVisible();
+      await page.locator('summary[aria-label="Open navigation"]').click();
+      await expect(page.getByRole("navigation", { name: "Mobile navigation" }).getByPlaceholder("Search anything")).toBeVisible();
+      await expect(page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("button", { name: /Switch to (light|dark) mode/ })).toBeVisible();
     } else {
       await expect(headerSearch).toBeVisible();
       const searchBox = await headerSearch.boundingBox();
       expect(searchBox?.width ?? 0).toBeGreaterThan(150);
+      await expect(page.locator(".header-theme-toggle")).toBeVisible();
     }
 
     await expectNoHorizontalOverflow(page);

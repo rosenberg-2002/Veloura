@@ -5,13 +5,11 @@
 }
 
 .search {
-  display: grid;
+  display: block;
   width: 100%;
   min-width: 0;
-  grid-template-columns: minmax(122px, 1fr) 82px 38px;
-  align-items: center;
   border: 1px solid rgba(255, 255, 255, .24);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: rgba(7, 7, 8, .28);
   backdrop-filter: blur(14px);
   transition: border-color 180ms ease, background 180ms ease;
@@ -24,22 +22,28 @@
 
 .searchBox {
   position: relative;
+  display: block;
   min-width: 0;
 }
 
 .searchBox input {
   width: 100%;
   height: 42px;
-  padding: 0 12px 0 42px;
+  padding: 0 18px 0 42px;
   border: 0;
   outline: 0;
   background: transparent;
   color: #fff;
-  font-size: 13px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .searchBox input::placeholder {
   color: rgba(255, 255, 255, .58);
+  font-family: inherit;
+  font-weight: 400;
 }
 
 .searchGlyph {
@@ -65,47 +69,6 @@
   transform: rotate(45deg);
 }
 
-.categoryLabel {
-  display: flex;
-  height: 24px;
-  align-items: center;
-  padding-left: 9px;
-  border-left: 1px solid rgba(255, 255, 255, .18);
-}
-
-.categoryLabel select {
-  width: 78px;
-  height: 24px;
-  padding: 0 18px 0 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: rgba(255, 255, 255, .76);
-  color-scheme: dark;
-  font-size: 9px;
-  font-weight: 760;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.submit {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: rgba(255, 255, 255, .74);
-  cursor: pointer;
-  transition: background 180ms ease, color 180ms ease;
-}
-
-.submit:hover,
-.submit:focus-visible {
-  background: var(--accent);
-  color: #fff;
-}
-
 .panel {
   position: absolute;
   z-index: 60;
@@ -115,7 +78,7 @@
   max-height: min(560px, calc(100vh - 120px));
   overflow-y: auto;
   border: 1px solid rgba(255, 255, 255, .17);
-  border-radius: 18px;
+  border-radius: var(--radius);
   background: rgba(14, 14, 16, .98);
   box-shadow: 0 22px 60px rgba(0, 0, 0, .38);
   backdrop-filter: blur(20px);
@@ -125,6 +88,7 @@
   margin: 0;
   padding: 18px;
   color: rgba(240, 237, 229, .7);
+  font-family: var(--font-body);
   font-size: 12px;
   line-height: 1.5;
 }
@@ -141,6 +105,7 @@
   margin: 0;
   padding: 5px 8px 7px;
   color: var(--accent-bright);
+  font-family: var(--font-body);
   font-size: 9px;
   font-weight: 760;
   letter-spacing: .12em;
@@ -154,7 +119,7 @@
   align-items: center;
   min-height: 48px;
   padding: 6px 8px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   transition: background 160ms ease;
 }
 
@@ -168,7 +133,7 @@
 .fallback {
   width: 34px;
   height: 34px;
-  border-radius: 7px;
+  border-radius: var(--radius);
   object-fit: cover;
 }
 
@@ -191,6 +156,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: var(--font-body);
 }
 
 .resultCopy strong {
@@ -212,6 +178,7 @@
   white-space: nowrap;
   text-align: right;
   text-transform: capitalize;
+  font-family: var(--font-body);
 }
 
 .allResults {
@@ -221,6 +188,7 @@
   padding: 13px 17px;
   border-top: 1px solid rgba(255, 255, 255, .12);
   color: #f0ede5;
+  font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
 }
@@ -246,12 +214,40 @@
   .autocomplete {
     min-width: 230px;
   }
+}
 
-  .search {
-    grid-template-columns: minmax(108px, 1fr) 68px 36px;
+/* ── Mobile: search inside narrow burger menu ── */
+@media (max-width: 1020px) {
+  .autocomplete {
+    width: 100%;
+    min-width: 0;
   }
 
-  .categoryLabel select {
-    width: 64px;
+  .search {
+    border-radius: var(--radius);
+  }
+
+  .searchBox input {
+    height: 40px;
+    padding: 0 14px 0 38px;
+    font-size: 14px;
+  }
+
+  .searchGlyph {
+    top: 12px;
+    left: 14px;
+  }
+
+  .panel {
+    position: fixed;
+    z-index: 80;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: min(70vh, 520px);
+    border-radius: var(--radius);
+    border-bottom: 0;
   }
 }

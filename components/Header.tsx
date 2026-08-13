@@ -24,15 +24,31 @@ export function Header() {
         </nav>
 
         <div className={`header-tools ${styles.tools}`}>
-          <SearchAutocomplete />
-          <ThemeToggle />
+          <Link className={styles.mobileSearchBtn} href="/search" aria-label="Search">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18">
+              <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.8" fill="none" />
+              <line x1="15.5" y1="15.5" x2="22" y2="22" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </Link>
+          <div className={`${styles.desktopSearch} header-autocomplete`}>
+            <SearchAutocomplete />
+          </div>
+          <span className="header-theme-toggle"><ThemeToggle /></span>
         </div>
 
         <details className={`mobile-menu ${styles.mobileMenu}`}>
           <summary aria-label="Open navigation"><span /><span /></summary>
           <nav aria-label="Mobile navigation">
+            <div className={`${styles.mobileNavSearch} header-autocomplete`}>
+              <SearchAutocomplete />
+            </div>
+            <div className={styles.mobileNavDivider} />
             {navigation.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
-            <Link href="/search">Search</Link>
+            <div className={styles.mobileNavDivider} />
+            <div className={styles.mobileNavTheme}>
+              <span>Theme</span>
+              <ThemeToggle />
+            </div>
           </nav>
         </details>
       </div>

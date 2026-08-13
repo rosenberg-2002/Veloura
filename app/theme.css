@@ -161,7 +161,7 @@ body,
   height: 42px;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, .24);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: rgba(7, 7, 8, .28);
   color: #fff;
   cursor: pointer;
@@ -228,23 +228,20 @@ body,
   background: #fff4e8;
 }
 
-@media (max-width: 840px) {
+@media (max-width: 1020px) {
   .header-tools {
     margin-left: auto;
+    width: auto;
   }
 
-  .theme-toggle {
-    width: 42px;
-  }
-}
-
-@media (max-width: 680px) {
   .site-header .header-inner:has(.header-tools) {
     grid-template-columns: 1fr auto auto;
   }
+}
 
-  .header-tools {
-    width: auto;
+@media (max-width: 840px) {
+  .theme-toggle {
+    width: 42px;
   }
 }
 

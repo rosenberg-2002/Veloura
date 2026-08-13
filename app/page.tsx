@@ -53,25 +53,7 @@ export default async function HomePage() {
       </section>
 
       <div className="content-shell home-content">
-        <section className="editorial-intro">
-          <p className="eyebrow">Curated for tonight</p>
-          <div>
-            <h2>Great cinema leaves<br />a little light behind.</h2>
-            <p>From quiet masterpieces to electric blockbusters, discover the films everyone will be talking about tomorrow.</p>
-          </div>
-        </section>
-
         <MovieRail eyebrow="Now in focus" title="Trending this week" movies={trending.results.slice(1)} href="/discover?sort=popularity.desc" />
-
-        <section className="feature-strip">
-          <div className="feature-number">24</div>
-          <div>
-            <p className="eyebrow light">A world of stories</p>
-            <h2>One good film can change the shape of an evening.</h2>
-          </div>
-          <Link className="round-link" href="/discover" aria-label="Discover all movies">↗</Link>
-        </section>
-
         <MovieRail eyebrow="Audience favorites" title="Popular right now" movies={popular.results} href="/discover?sort=popularity.desc" />
         <MovieRail eyebrow="The essential shelf" title="All-time acclaimed" movies={topRated.results} href="/discover?sort=vote_average.desc" />
         <MovieRail eyebrow="Fresh on the big screen" title="Now playing" movies={nowPlaying.results} href="/discover?sort=primary_release_date.desc" />
