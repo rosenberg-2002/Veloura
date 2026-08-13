@@ -253,6 +253,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
         </aside>
       </div>
 
+      <div className="encyclopedia-columns">
       {cast.length > 0 && (
         <section className="reference-section" id="cast">
           <div className="reference-heading">
@@ -335,6 +336,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
           </div>
         </div>
       </section>
+      </div>
 
       {collection && (
         <section className="collection-section" style={collection.backdrop_path ? { backgroundImage: `url(${imageUrl(collection.backdrop_path, "w1280")})` } : undefined}>
@@ -352,6 +354,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
         </section>
       )}
 
+      <div className="encyclopedia-columns">
       {releases.length > 0 && (
         <section className="reference-section" id="releases">
           <div className="reference-heading">
@@ -492,6 +495,7 @@ export function MovieEncyclopedia({ movie, collection }: MovieEncyclopediaProps)
           </div>
         </section>
       )}
+      </div>
 
       <MovieRail eyebrow="More like this" title="Similar films" movies={movie.similar?.results ?? []} />
       <MovieRail eyebrow="Stay for another" title="Recommended next" movies={movie.recommendations?.results ?? []} />

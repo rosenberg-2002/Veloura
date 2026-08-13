@@ -117,10 +117,6 @@ body,
   background: rgba(255, 255, 255, .62);
 }
 
-:root[data-theme="light"] .company-card img {
-  filter: grayscale(1) contrast(1.15);
-}
-
 :root[data-theme="light"] :is(.credit-list a, .crew-department > div a) {
   border-bottom-color: rgba(39, 34, 29, .09);
 }

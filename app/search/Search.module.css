@@ -322,17 +322,18 @@
   display: grid;
   min-height: 100px;
   align-items: center;
+  padding: 16px;
+  background: #f3f0e8;
 }
 
 .companyLogo img {
   max-width: 170px;
   max-height: 74px;
-  filter: grayscale(1) brightness(4);
   object-fit: contain;
 }
 
 .companyLogo span {
-  color: #5f5a54;
+  color: #151516;
   font-family: var(--font-display);
   font-size: 70px;
 }
@@ -443,8 +444,4 @@
 
 :global(:root[data-theme="light"]) .knownFor a {
   border-bottom-color: rgba(39, 34, 29, .09);
-}
-
-:global(:root[data-theme="light"]) .companyLogo img {
-  filter: grayscale(1) contrast(1.1);
 }

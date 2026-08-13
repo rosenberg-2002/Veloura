@@ -1,6 +1,11 @@
 import type { Genre, GenreResponse, MoviePageResponse } from "./types";
 
-const API_BASE = "https://api.themoviedb.org/3";
+const DIRECT_API_BASE = "https://api.themoviedb.org/3";
+const WORKER_PROXY_BASE = "https://veloura-movies.rosenberg-cinema.workers.dev/api/tmdb";
+
+function apiBase() {
+  return process.env.TMDB_API_BASE?.trim().replace(/\/$/, "") || DIRECT_API_BASE;
+}
 const IMAGE_BASE = "https://image.tmdb.org/t/p";
 const REQUEST_TIMEOUT_MS = 8_000;
 const MAX_ATTEMPTS = 2;
@@ -129,7 +134,15 @@ export async function tmdbFetch<T>(path: string, parameters: TmdbParameters = {}
     }
   }
 
-  return request<T>(new URL(`${API_BASE}${path}?${query.toString()}`), readAccessToken);
+  const preferredBase = apiBase();
+  const queryString = query.toString();
+
+  try {
+    return await request<T>(new URL(`${preferredBase}${path}?${queryString}`), readAccessToken);
+  } catch (error) {
+    if (preferredBase === WORKER_PROXY_BASE) throw error;
+    return request<T>(new URL(`${WORKER_PROXY_BASE}${path}?${queryString}`), readAccessToken);
+  }
 }
 
 export function getMoviePage(path: string, parameters: TmdbParameters = {}): Promise<MoviePageResponse> {
